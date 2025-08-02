@@ -8,28 +8,10 @@ import time
 
 app = Flask(__name__)
 
-# 정적 파일 서빙을 위한 라우트 추가
+# 더 간단한 정적 파일 서빙
 @app.route('/static/<path:filename>')
 def static_files(filename):
-    """정적 파일 서빙"""
-    try:
-        # 파일 경로 확인
-        file_path = os.path.join('static', filename)
-        if not os.path.exists(file_path):
-            return f"파일을 찾을 수 없습니다: {filename}", 404
-        
-        # 파일 확장자에 따른 MIME 타입 설정
-        if filename.endswith('.jpg') or filename.endswith('.jpeg'):
-            return send_from_directory('static', filename, mimetype='image/jpeg')
-        elif filename.endswith('.gif'):
-            return send_from_directory('static', filename, mimetype='image/gif')
-        elif filename.endswith('.png'):
-            return send_from_directory('static', filename, mimetype='image/png')
-        else:
-            return send_from_directory('static', filename)
-    except Exception as e:
-        print(f"정적 파일 서빙 오류: {e}")
-        return f"파일을 찾을 수 없습니다: {filename}", 404
+    return send_from_directory('static', filename)
 
 # 추가 정적 파일 라우트 (Vercel 호환성)
 @app.route('/static/images/<path:filename>')

@@ -608,4 +608,4 @@ def get_game_state(game_id):
 
 if __name__ == '__main__':
     # 로컬 개발용 - 다른 포트 사용
-    app.run(debug=True, host='127.0.0.1', port=8080)
+    app.run(debug=True, host='127.0.0.1', port=8080) 
